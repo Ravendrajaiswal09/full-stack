@@ -1,6 +1,6 @@
 
 **Project Setup**
 
-# **Install the dependencies** : npm install
-# **Create build** : npm run build
-# **Start the webpack and node app** : npm start
+1. **Install the dependencies** : npm install
+2. **Create build** : npm run build
+3. **Start the webpack and node app** : npm start
