@@ -1,8 +1,6 @@
-This is learning project.
 
+**Project Setup**
 
-## Steps to create build for development environment ##
-
-1. **Install the dependencies** : npm install
-2. **Create build** : npm run build
-3. **Start the webpack and node app** : npm start
+# **Install the dependencies** : npm install
+# **Create build** : npm run build
+# **Start the webpack and node app** : npm start
