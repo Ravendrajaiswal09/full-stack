@@ -1,11 +1,10 @@
-var debug = process.env.NODE_ENV !== "production";
 var path = require('path');
 var webpack = require('webpack');
 const outputPath = path.join(__dirname, 'build');
 
 module.exports = {
   context: __dirname,
-  devtool: debug ? "inline-sourcemap" : null,
+  devtool: "inline-sourcemap",
   entry : [
     './src/index.js'
   ],
@@ -14,11 +13,7 @@ module.exports = {
     publicPath : '/',
     filename: "index.js"
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+  plugins: [],
   module : {
     loaders : [
       {

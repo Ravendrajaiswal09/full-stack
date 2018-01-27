@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node src/server/",
+    "start": "nodemon src/server/",
     "webpack": "webpack",
     "build": "webpack --config webpack.config.js",
     "test": "react-scripts test --env=jsdom",
@@ -13,10 +13,12 @@
     "babel-register": "^6.26.0",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
+    "mongoose": "^5.0.0-rc0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-select": "^1.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -26,6 +28,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.7",
     "expose-loader": "^0.7.4",
+    "nodemon": "^1.14.6",
     "react-hot-loader": "^3.1.3",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
