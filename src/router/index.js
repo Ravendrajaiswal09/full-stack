@@ -8,7 +8,7 @@ router.get('/ninjas', function(req, res, next){
 /*     Ninja.find({}).then(function(ninja){
         res.send(ninja);
     }) */
- console.log(parseFloat(req.query.lng), parseFloat(req.query.lat))
+ console.log(parseFloat(req.query.lng), parseFloat(req.query.lat) +"Name")
     Ninja.aggregate([
         {
             $geoNear: {
