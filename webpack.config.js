@@ -1,11 +1,13 @@
 var path = require('path');
-var webpack = require('webpack');
 const outputPath = path.join(__dirname, 'build');
 
-module.exports = {
+console.log(`run webpack now`);
+
+var config = {
   context: __dirname,
   devtool: "inline-sourcemap",
   entry : [
+    'babel-polyfill',
     './src/index.js'
   ],
   output: {
@@ -13,7 +15,17 @@ module.exports = {
     publicPath : '/',
     filename: "index.js"
   },
-  plugins: [],
+  resolve : {
+    root : path.resolve('./src'),
+    alias : {
+      actions : path.resolve('./src/users'),
+    },
+    extensions : ['', '.js', '.jsx', '.json'],
+    modulesDirectories : [
+      'node_modules'
+    ] 
+  },
+
   module : {
     loaders : [
       {
@@ -22,15 +34,36 @@ module.exports = {
       },
       {
         test : /\.js$/,
-        loaders : 'babel-loader',
+        loaders : ['react-hot-loader/webpack', 'babel'],
         exclude : /node_modules/,
         include : __dirname
-      },
-      {
-        test : /\.css$/,
-        exclude : /node_modules/,
-        loader: 'style-loader!css-loader'
-      },
+      }
     ]
+  },
+  devServer : {
+    outputPath : outputPath,
+    contentBase : './',
+    colors : true,
+    inline : true,
+    publicPath : '/',
+    historyApiFallback : true,
+    hot : true,
+    quiet : false,
+    hash : false,
+    version : false,
+    timings : false,
+    assets : false,
+    chunks : false,
+    modules : false,
+    reasons : false,
+    children : false,
+    source : false,
+    errors : false,
+    errorDetails : false,
+    noInfo : false,
+    warnings : false,
+    stats : 'minimal'
   }
 };
+
+module.exports = config;
