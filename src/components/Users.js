@@ -6,14 +6,25 @@ class Users extends Component {
     constructor(props) {
         super(props);
         this.addUser = this.addUser.bind(this)
+        this.deleteUser = this.deleteUser.bind(this)
      }
 
-     addUser(){
-        browserHistory.push('/users/new');
+     addUser(id){
+        let url =''
+        if (id)
+             url = `/users/${id}`
+        else
+            url = '/users/new'
+        browserHistory.push(url);
+     }
+
+     deleteUser(id){
+            this.props.onDeleteUser(id)
      }
 
     render(){
         let users = this.props.userState.users
+        console.log(users)
         return (
         <div>
             <h1>User</h1>
@@ -38,8 +49,8 @@ class Users extends Component {
                                     <td>{index + 1}</td>
                                     <td >{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td> <a ><i className="fa fa-edit"></i></a></td>
-                                    <td> <i onClick={() => "deleteUser(user)"} className="fa fa-times"></i></td>
+                                    <td> <a ><i className="fa fa-edit" onClick={() => this.addUser(user._id)}></i></a></td>
+                                    <td> <i onClick={() => this.deleteUser(user._id)} className="fa fa-times"></i></td>
                                 </tr>
                             </tbody>
                         )

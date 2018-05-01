@@ -8,14 +8,20 @@ import Users from './Users';
 class UserContainer extends Component {
     constructor(props) {
         super(props);
+        this.onDeleteUser = this.onDeleteUser.bind(this)
      }
 
  componentWillMount() {
-   this.props.dispatcher.getuserData();
+   this.props.dispatcher.getUserData();
+ }
+
+  onDeleteUser(id){
+   this.props.dispatcher.deleteUserData(id);
+   this.props.dispatcher.getUserData();
  }
     render(){
         return (
-            <Users{...this.props}/>
+            <Users{...this.props} onDeleteUser={this.onDeleteUser}/>
         )
     }
 }

@@ -5,8 +5,17 @@ var mongojs = require('mongojs');
 var ObjectId = require('mongodb').ObjectID;
 var db = mongojs('mongodb://ravendra:1234@ds111059.mlab.com:11059/my_task')
 
-router.get('/get_task', function(req, res, next){
-    db.task.find(function(err, data){
+router.get('/task', function(req, res, next){
+    db.collection('task').find().toArray(function(err, data){
+        if(err) {
+            res.send(err)
+        } 
+        res.json(data)
+    })
+  })
+
+  router.get('/new_task', function(req, res, next){
+    db.collection('new_task').find().toArray(function(err, data){
         if(err) {
             res.send(err)
         } 
@@ -15,7 +24,7 @@ router.get('/get_task', function(req, res, next){
   })
   
   //Get single Task
-  router.get('/get_task/:id', function(req, res, next){
+  router.get('/task/:id', function(req, res, next){
     db.task.findOne({_id: ObjectId(req.params.id)}, function(err, data){
         if(err) {
             res.send(err)
@@ -25,7 +34,7 @@ router.get('/get_task', function(req, res, next){
   })
 
     //Get single Task
-  router.delete('/get_task/:id', function(req, res, next){
+  router.delete('/task/:id', function(req, res, next){
     db.task.remove({_id: ObjectId(req.params.id)}, function(err, data){
         if(err) {
             res.send(err)
@@ -35,7 +44,7 @@ router.get('/get_task', function(req, res, next){
   })
 
     //Post  Task
-  router.post('/get_task', function(req, res, next){
+  router.post('/task', function(req, res, next){
       var task = req.body
        if (!task){
             return res.status(400).send("Bad Request");
@@ -49,7 +58,7 @@ router.get('/get_task', function(req, res, next){
   })
 
    //update task
-  router.put('/get_task/:id', function(req, res, next){
+  router.put('/task/:id', function(req, res, next){
     var task = req.body
     if(!task){
         return res.status(400).send("Bad Request");

@@ -18,8 +18,8 @@ app.use(webpackHotMiddleware(compiler));
 
 
 // Parsers
-/*app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());*/
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // React DIST output folder
 app.use(express.static(path.join(__dirname, '../../build')));

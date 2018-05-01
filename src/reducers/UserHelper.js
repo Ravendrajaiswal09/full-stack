@@ -5,6 +5,10 @@ export const convertUserData = (state, action) => {
   clonedState = _.cloneDeep(state);
   let res = action.response,
     returnList = [];
+    if(_.isPlainObject(res)) {
+      returnList.push(res)
+    }
+    else {
   _.forEach(res, (item) => {
     let userInfo = {
       address: {}
@@ -16,6 +20,7 @@ export const convertUserData = (state, action) => {
     }
       returnList.push(userInfo)
     })
+  }
   clonedState.users = returnList
   return clonedState
 }
